@@ -697,8 +697,11 @@ html{ scroll-behavior: smooth; }
   *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
+html{ overflow-x: hidden; max-width: 100%; }
 body{
   margin: 0;
+  overflow-x: hidden;
+  max-width: 100%;
   background: radial-gradient(120% 90% at 15% -10%, #142230 0%, transparent 55%),
               radial-gradient(90% 70% at 100% 0%, #1a1030 0%, transparent 50%),
               linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
@@ -900,7 +903,7 @@ p{ margin: 0 0 16px; }
 .figure-wide{ margin-top: 32px; padding: 10px; overflow: hidden; }
 .figure-wide img{ width: 100%; height: auto; border-radius: 12px; }
 .figure-wide figcaption{ padding: 14px 10px 6px; font-size: 0.84rem; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.figure-wide figcaption .c{ font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-faint); text-transform: uppercase; white-space: nowrap; }
+.figure-wide figcaption .c{ font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-faint); text-transform: uppercase; }
 .figure-wide figcaption .c a{ color: var(--ink-faint); }
 
 /* ---------- interactive map ---------- */
