@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quando a chuva vira desastre — enchentes na Zona da Mata Mineira</title>
+<meta name="description" content="Dossiê escolar sobre as enchentes de fevereiro de 2026 em Juiz de Fora e Ubá (MG): o que aconteceu, números, vídeos, depoimentos e propostas de prevenção.">
+<style>
+
+/* ---------- tokens — committed dark "storm glass" theme ---------- */
+:root{
+  --bg-0: #060a0e;
+  --bg-1: #0b131a;
+  --glass: rgba(255,255,255,0.055);
+  --glass-2: rgba(255,255,255,0.09);
+  --glass-border: rgba(255,255,255,0.14);
+  --glass-border-soft: rgba(255,255,255,0.08);
+  --ink: #eef3f5;
+  --ink-soft: #aebac4;
+  --ink-faint: #7c8994;
+  --accent: #58c4e6;
+  --accent-2: #8f86f2;
+  --alert: #ff7a6b;
+  --amber: #ffb865;
+  --line: rgba(255,255,255,0.1);
+
+  --font-display: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, monospace;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body{
+  margin: 0;
+  background: radial-gradient(120% 90% at 15% -10%, #142230 0%, transparent 55%),
+              radial-gradient(90% 70% at 100% 0%, #1a1030 0%, transparent 50%),
+              linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ambient glow blobs, fixed, decorative */
+.glow{ position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; pointer-events: none; opacity: 0.55; }
+.glow-a{ width: 560px; height: 560px; top: -180px; left: -160px; background: radial-gradient(circle, rgba(88,196,230,0.35), transparent 70%); }
+.glow-b{ width: 620px; height: 620px; top: 30%; right: -220px; background: radial-gradient(circle, rgba(143,134,242,0.28), transparent 70%); }
+.glow-c{ width: 500px; height: 500px; bottom: -160px; left: 20%; background: radial-gradient(circle, rgba(255,122,107,0.16), transparent 70%); }
+
+a{ color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+img{ max-width: 100%; display: block; }
+
+.wrap{ max-width: 800px; margin: 0 auto; padding: 0 24px; }
+.wrap-wide{ max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- glass primitive ---------- */
+.glass{
+  background: linear-gradient(160deg, var(--glass-2), var(--glass));
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+.glass-hover{ transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
+.glass-hover:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.24);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* ---------- reveal-on-scroll ---------- */
+[data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+[data-reveal].is-visible{ opacity: 1; transform: translateY(0); }
+[data-reveal-group] > *{ opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+[data-reveal-group].is-visible > *{ opacity: 1; transform: translateY(0); }
+[data-reveal-group].is-visible > *:nth-child(1){ transition-delay: 0.02s; }
+[data-reveal-group].is-visible > *:nth-child(2){ transition-delay: 0.10s; }
+[data-reveal-group].is-visible > *:nth-child(3){ transition-delay: 0.18s; }
+[data-reveal-group].is-visible > *:nth-child(4){ transition-delay: 0.26s; }
+[data-reveal-group].is-visible > *:nth-child(5){ transition-delay: 0.34s; }
+[data-reveal-group].is-visible > *:nth-child(6){ transition-delay: 0.42s; }
+
+/* ---------- floating pill nav ---------- */
+.topbar{ position: sticky; top: 16px; z-index: 30; display: flex; justify-content: center; padding: 0 16px; }
+.topbar-inner{
+  max-width: 980px; width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 10px 10px 10px 20px; border-radius: 999px;
+  background: rgba(12,18,24,0.62); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.brand{ font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.brand strong{ color: var(--ink); }
+.topnav{ display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.topnav::-webkit-scrollbar{ display: none; }
+.topnav a{
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.02em;
+  color: var(--ink-soft); text-decoration: none; text-transform: uppercase;
+  white-space: nowrap; padding: 8px 13px; border-radius: 999px; transition: background 0.25s ease, color 0.25s ease;
+}
+.topnav a:hover{ color: var(--ink); background: rgba(255,255,255,0.08); }
+@media (max-width: 760px){ .topnav{ display: none; } }
+
+/* ---------- hero ---------- */
+.hero{ position: relative; padding: 26px 20px 0; }
+.hero-media{
+  max-width: 1180px; margin: 0 auto; height: clamp(280px, 42vw, 480px);
+  border-radius: 32px; overflow: hidden; position: relative;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+.hero-media img{
+  width: 100%; height: 100%; object-fit: cover; object-position: center 60%;
+  animation: kenburns 28s ease-out forwards;
+}
+@keyframes kenburns{ from{ transform: scale(1); } to{ transform: scale(1.1); } }
+.hero-media .scrim{
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6,10,14,0.15) 0%, rgba(6,10,14,0.75) 100%),
+    linear-gradient(100deg, rgba(6,10,14,0.55) 0%, rgba(6,10,14,0.05) 60%);
+}
+.hero-media .photo-credit{
+  position: absolute; right: 16px; bottom: 12px; z-index: 1;
+  font-family: var(--font-mono); font-size: 0.66rem; color: rgba(255,255,255,0.75);
+}
+.hero-media .photo-credit a{ color: rgba(255,255,255,0.85); }
+
+.hero-card{
+  max-width: 1000px; margin: -84px auto 0; position: relative; z-index: 2;
+  padding: 44px 40px 40px; border-radius: 28px;
+}
+.hero .eyebrow{
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--alert); margin: 0 0 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero .eyebrow::before{
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--alert); display: inline-block; box-shadow: 0 0 10px var(--alert);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: 0.3; } }
+.hero h1{
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(2.3rem, 5.6vw, 4rem); line-height: 1.04;
+  margin: 0 0 18px; text-wrap: balance; letter-spacing: -0.01em;
+  background: linear-gradient(100deg, #ffffff 30%, var(--accent) 75%, var(--accent-2) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero .dek{ font-size: 1.13rem; color: var(--ink-soft); max-width: 640px; margin: 0 0 8px; text-wrap: pretty; }
+.hero .credit{ font-size: 0.85rem; color: var(--ink-faint); margin-top: 16px; }
+
+/* ---------- stat bento ---------- */
+.statstrip{ display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 34px; }
+.statcell{ padding: 20px 18px; border-radius: 18px; }
+.statcell .n{
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--accent);
+  display: block; line-height: 1.1; text-shadow: 0 0 22px rgba(88,196,230,0.4);
+}
+.statcell.is-alert .n{ color: var(--alert); text-shadow: 0 0 22px rgba(255,122,107,0.4); }
+.statcell.is-amber .n{ color: var(--amber); text-shadow: 0 0 22px rgba(255,184,101,0.35); }
+.statcell .l{ font-size: 0.78rem; color: var(--ink-faint); margin-top: 6px; display: block; }
+@media (min-width: 720px){ .statcell:first-child{ grid-column: span 2; } }
+
+/* ---------- section shell ---------- */
+section{ padding: 68px 0; }
+.section-head{ margin-bottom: 28px; }
+.section-num{
+  font-family: var(--font-mono); font-size: 12px; color: var(--accent);
+  letter-spacing: 0.08em; margin: 0 0 8px;
+}
+h2{
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: 0; text-wrap: balance; color: var(--ink);
+}
+h3{ font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; margin: 0 0 8px; color: var(--ink); }
+p{ margin: 0 0 16px; }
+.lede{ font-size: 1.05rem; color: var(--ink-soft); max-width: 66ch; }
+
+/* ---------- timeline ---------- */
+.timeline{ display: flex; flex-direction: column; gap: 12px; max-width: 700px; }
+.tl-item{
+  display: grid; grid-template-columns: 92px 1fr; gap: 20px;
+  padding: 18px 22px; border-radius: 16px;
+}
+.tl-date{ font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); font-weight: 600; padding-top: 2px; }
+.tl-body p{ margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+.tl-body strong{ color: var(--ink); }
+@media (max-width: 560px){ .tl-item{ grid-template-columns: 1fr; gap: 6px; } }
+
+/* ---------- photo gallery ---------- */
+.photogrid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 32px; }
+.photocard{ overflow: hidden; padding: 0; }
+.photocard .ph-frame{ overflow: hidden; aspect-ratio: 4/3; }
+.photocard img{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.photocard:hover img{ transform: scale(1.06); }
+.photocard .ph-cap{ padding: 14px 16px; }
+.photocard .ph-cap .t{ font-size: 0.86rem; color: var(--ink-soft); display: block; margin-bottom: 4px; }
+.photocard .ph-cap .c{ font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em; }
+.photocard .ph-cap .c a{ color: var(--ink-faint); }
+
+.figure-wide{ margin-top: 32px; padding: 10px; overflow: hidden; }
+.figure-wide img{ width: 100%; height: auto; border-radius: 12px; }
+.figure-wide figcaption{ padding: 14px 10px 6px; font-size: 0.84rem; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.figure-wide figcaption .c{ font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-faint); text-transform: uppercase; white-space: nowrap; }
+.figure-wide figcaption .c a{ color: var(--ink-faint); }
+
+/* ---------- data bento ---------- */
+.datagrid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.datacard{ padding: 24px; }
+.datacard .n{
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-size: 1.8rem; font-weight: 600; color: var(--ink); display: block;
+}
+.datacard.is-alert .n{ color: var(--alert); text-shadow: 0 0 20px rgba(255,122,107,0.35); }
+.datacard.is-amber .n{ color: var(--amber); text-shadow: 0 0 20px rgba(255,184,101,0.3); }
+.datacard .l{ font-size: 0.85rem; color: var(--ink-soft); margin-top: 8px; display: block; }
+.datacard .src{ font-size: 0.72rem; color: var(--ink-faint); margin-top: 12px; display: block; }
+.datacard .src a{ color: var(--ink-faint); }
+
+/* ---------- bar chart ---------- */
+.chart{ margin: 26px 0; max-width: 640px; padding: 28px 26px; }
+.chart-title{ font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); margin-bottom: 16px; }
+.bar-row{ display: grid; grid-template-columns: 190px 1fr 60px; align-items: center; gap: 14px; padding: 10px 0; }
+.bar-row .bl{ font-size: 0.86rem; color: var(--ink-soft); }
+.bar-track{ height: 10px; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden; }
+.bar-fill{
+  --fill: 0%; height: 100%; width: 0%; border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 14px rgba(88,196,230,0.5);
+  transition: width 1.1s cubic-bezier(.16,.84,.44,1);
+}
+.bar-fill.is-filled{ width: var(--fill); }
+.bar-fill.is-alert{ background: linear-gradient(90deg, var(--alert), #ff9c6b); box-shadow: 0 0 14px rgba(255,122,107,0.5); }
+.bar-fill.is-amber{ background: linear-gradient(90deg, var(--amber), #ffd27a); box-shadow: 0 0 14px rgba(255,184,101,0.45); }
+.bar-row .bv{ font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.86rem; color: var(--ink); text-align: right; }
+@media (max-width: 560px){ .bar-row{ grid-template-columns: 1fr; gap: 4px; } .bar-row .bv{ text-align: left; } }
+
+.ratio-chart{ display: flex; align-items: flex-end; gap: 30px; height: 160px; margin: 8px 0 4px; max-width: 340px; }
+.ratio-col{ display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; height: 100%; justify-content: flex-end; }
+.ratio-bar{ width: 56px; background: rgba(255,255,255,0.08); border-radius: 8px 8px 0 0; position: relative; height: 0%; transition: height 1.2s cubic-bezier(.16,.84,.44,1); }
+.ratio-bar.is-filled{ height: var(--fill); }
+.ratio-bar.media{ border: 1px solid var(--glass-border); }
+.ratio-bar.atual{ background: linear-gradient(180deg, var(--alert), #ff9c6b); box-shadow: 0 0 18px rgba(255,122,107,0.5); }
+.ratio-col .rv{ font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+.ratio-col .rl{ font-size: 0.76rem; color: var(--ink-faint); text-align: center; }
+
+/* ---------- video grid ---------- */
+.videogrid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.videocard{ overflow: hidden; padding: 0; }
+.video-frame{ position: relative; width: 100%; aspect-ratio: 16/9; background: rgba(255,255,255,0.04); }
+.video-frame iframe{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-meta{ padding: 14px 16px; }
+.video-meta .t{ font-size: 0.92rem; color: var(--ink); display: block; margin-bottom: 4px; }
+.video-meta .s{ font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ---------- testimony placeholders ---------- */
+.testgrid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.testitem{ display: flex; flex-direction: column; overflow: hidden; }
+.testcard{
+  border-bottom: 1px dashed var(--glass-border); aspect-ratio: 16/9;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 20px; gap: 8px;
+}
+.testcard .icon{
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ink-faint);
+  display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 16px;
+}
+.testcard .label{ font-size: 0.9rem; color: var(--ink-soft); max-width: 30ch; font-weight: 600; }
+.testcard .tag{ font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+.bizmeta{ padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 5px; }
+.bizmeta .biz-addr{ font-size: 0.82rem; color: var(--ink-soft); }
+.bizmeta .biz-contact{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
+.bizmeta .biz-contact.is-missing{ color: var(--amber); font-family: var(--font-body); font-style: italic; }
+.bizmeta .biz-src{ font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+.bizmeta .biz-src a{ color: var(--ink-faint); }
+
+/* ---------- news list ---------- */
+.newsgroup{ margin-bottom: 22px; padding: 8px 26px; }
+.newsgroup h3{ font-size: 1.02rem; color: var(--ink); margin: 14px 0 6px; font-family: var(--font-body); font-weight: 600; }
+.newslist{ list-style: none; margin: 0; padding: 0; }
+.newslist li{ border-top: 1px solid var(--glass-border-soft); }
+.newslist a{
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 14px 4px; text-decoration: none; color: var(--ink);
+  border-radius: 10px; transition: background 0.2s ease;
+}
+.newslist a:hover{ background: rgba(255,255,255,0.05); }
+.newslist a:hover .t{ color: var(--accent); }
+.newslist .t{ font-size: 0.96rem; flex: 1; }
+.newslist .src{ font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-faint); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em; }
+
+/* ---------- checklist (causas / proposta) ---------- */
+.checklist{ list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 14px; }
+.checklist li{ padding: 20px 22px; display: grid; grid-template-columns: 26px 1fr; gap: 14px; }
+.checklist .mark{ color: var(--accent); font-family: var(--font-mono); font-size: 1.1rem; text-shadow: 0 0 12px rgba(88,196,230,0.5); }
+.checklist .txt strong{ display: block; color: var(--ink); margin-bottom: 4px; }
+.checklist .txt span{ color: var(--ink-soft); font-size: 0.92rem; }
+
+/* ---------- recon bento ---------- */
+.recongrid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 14px; }
+.reconcard{ padding: 22px; }
+.reconcard .n{ font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.5rem; color: var(--accent); display: block; margin-bottom: 6px; text-shadow: 0 0 16px rgba(88,196,230,0.35); }
+.reconcard p{ margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+
+/* ---------- sources ---------- */
+.sourcespanel{ padding: 30px 32px; }
+.sources{ columns: 2; column-gap: 40px; font-size: 0.88rem; list-style: none; padding: 0; margin: 0; }
+.sources li{ break-inside: avoid; margin-bottom: 10px; color: var(--ink-soft); }
+.sources a{ color: var(--ink); }
+@media (max-width: 640px){ .sources{ columns: 1; } }
+
+footer{ padding: 40px 0 70px; }
+footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
+
+.note{
+  border-left: 3px solid var(--amber); background: rgba(255,184,101,0.08);
+  padding: 14px 18px; font-size: 0.9rem; color: var(--ink-soft); margin-top: 20px;
+  border-radius: 0 14px 14px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="glow glow-a"></div>
+<div class="glow glow-b"></div>
+<div class="glow glow-c"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top"><strong>Quando a chuva vira desastre</strong></a>
+    <ul class="topnav">
+      <li><a href="#oqueaconteceu">O que aconteceu</a></li>
+      <li><a href="#numeros">Números</a></li>
+      <li><a href="#economia">Economia</a></li>
+      <li><a href="#videos">Vídeos</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#noticias">Notícias</a></li>
+      <li><a href="#proposta">Proposta</a></li>
+      <li><a href="#fontes">Fontes</a></li>
+    </ul>
+  </div>
+</div>
+
+<main id="top">
+
+  <header class="hero">
+    <div class="hero-media">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg/500px-Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg" alt="Vista aérea da área atingida pelas enchentes na margem do rio Paraibuna, bairro Industrial, Juiz de Fora">
+      <div class="scrim"></div>
+      <p class="photo-credit">Bairro Industrial, Juiz de Fora — Canal Gov / <a href="https://commons.wikimedia.org/wiki/File:Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 4.0</p>
+    </div>
+
+    <div class="hero-card glass wrap">
+      <p class="eyebrow">Zona da Mata Mineira · fevereiro de 2026</p>
+      <h1>Quando a chuva vira desastre</h1>
+      <p class="dek">Entre 23 e 24 de fevereiro de 2026, um temporal extremo atingiu Juiz de Fora e Ubá, em Minas Gerais, causando enchentes e deslizamentos que mudaram a vida de milhares de famílias. Este dossiê reúne o que aconteceu, os números, os vídeos, os depoimentos e as propostas para que não se repita.</p>
+      <p class="credit">Trabalho escolar — 6º ano do Ensino Fundamental ao 3º ano do Ensino Médio</p>
+
+      <div class="statstrip">
+        <div class="statcell is-alert glass"><span class="n" data-count="73">0</span><span class="l">mortes confirmadas — 65 em Juiz de Fora, 8 em Ubá</span></div>
+        <div class="statcell glass"><span class="n" data-count="8000" data-suffix="+">0</span><span class="l">pessoas desalojadas</span></div>
+        <div class="statcell glass"><span class="n">584 mm</span><span class="l">chuva em fevereiro (recorde)</span></div>
+        <div class="statcell is-amber glass"><span class="n">R$ 2 bi</span><span class="l">mobilizados p/ reconstrução</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="oqueaconteceu" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">01 — Linha do tempo</p>
+      <h2>O que aconteceu</h2>
+    </div>
+    <p class="lede">As enchentes e deslizamentos na Zona da Mata Mineira foram causados por eventos de precipitação extrema. Juiz de Fora e Ubá foram os municípios mais afetados, e ambos decretaram estado de calamidade pública.</p>
+
+    <div class="timeline" data-reveal-group>
+      <div class="tl-item glass">
+        <div class="tl-date">23 fev</div>
+        <div class="tl-body"><p><strong>Início do temporal.</strong> Chuva extrema atinge a região no fim da tarde, com volumes muito acima da média histórica para o período.</p></div>
+      </div>
+      <div class="tl-item glass">
+        <div class="tl-date">24 fev</div>
+        <div class="tl-body"><p>Em Ubá, cerca de <strong>170 mm de chuva caem em apenas 3 horas</strong>, provocando a maior enchente dos últimos anos na cidade. Bairros ficam isolados, ruas e avenidas são tomadas pela água com força suficiente para arrastar veículos.</p></div>
+      </div>
+      <div class="tl-item glass">
+        <div class="tl-date">25 fev</div>
+        <div class="tl-body"><p>Novas chuvas provocam <strong>novos alagamentos e transbordamentos</strong> em Juiz de Fora. Mais casas desabam e ocorrem novos deslizamentos, agravando a situação já crítica.</p></div>
+      </div>
+      <div class="tl-item glass">
+        <div class="tl-date">dias seguintes</div>
+        <div class="tl-body"><p>As buscas por vítimas continuam e o número de mortos é atualizado diariamente pela Defesa Civil, até o saldo final confirmado de <strong>73 mortes</strong> — 65 em Juiz de Fora e 8 em Ubá — e mais de <strong>8 mil pessoas desalojadas</strong>.</p></div>
+      </div>
+      <div class="tl-item glass">
+        <div class="tl-date">2 mar</div>
+        <div class="tl-body"><p>Fevereiro de 2026 é confirmado como o <strong>mês mais chuvoso já registrado</strong> na história de Ubá, com 584 mm acumulados.</p></div>
+      </div>
+    </div>
+
+    <div class="photogrid" data-reveal-group>
+      <figure class="photocard glass glass-hover">
+        <div class="ph-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/28.02.2026_-_Visita_a_%C3%A1reas_afetadas_pelas_chuvas_no_munic%C3%ADpio_de_Juiz_de_ForaJuiz_de_Fora_%2855120961731%29.jpg/500px-28.02.2026_-_Visita_a_%C3%A1reas_afetadas_pelas_chuvas_no_munic%C3%ADpio_de_Juiz_de_ForaJuiz_de_Fora_%2855120961731%29.jpg" alt="Área atingida por deslizamentos de terra em Juiz de Fora" loading="lazy"></div>
+        <figcaption class="ph-cap"><span class="t">Área atingida por deslizamentos em Juiz de Fora</span><span class="c">Ricardo Stuckert/PR · <a href="https://commons.wikimedia.org/wiki/Category:Juiz_de_Fora" target="_blank" rel="noopener">Wikimedia</a></span></figcaption>
+      </figure>
+      <figure class="photocard glass glass-hover">
+        <div class="ph-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Lama_no_Abrigo_Santa_Helena.jpg/500px-Lama_no_Abrigo_Santa_Helena.jpg" alt="Abrigo Santa Helena, instituição para idosos em Juiz de Fora, invadido pela lama" loading="lazy"></div>
+        <figcaption class="ph-cap"><span class="t">Abrigo Santa Helena (idosos) invadido pela lama</span><span class="c"><a href="https://commons.wikimedia.org/wiki/File:Lama_no_Abrigo_Santa_Helena.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></figcaption>
+      </figure>
+      <figure class="photocard glass glass-hover">
+        <div class="ph-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_02.jpg/500px-Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_02.jpg" alt="Local atingido por deslizamento de terra em Juiz de Fora" loading="lazy"></div>
+        <figcaption class="ph-cap"><span class="t">Deslizamento de terra em Juiz de Fora</span><span class="c"><a href="https://commons.wikimedia.org/wiki/File:Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="causas" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">02 — Por que aconteceu</p>
+      <h2>Causas do desastre</h2>
+    </div>
+    <ul class="checklist">
+      <li class="glass glass-hover"><span class="mark">→</span><div class="txt"><strong>Impermeabilização excessiva do solo</strong><span>O concreto e o asfalto impedem que a água da chuva seja absorvida pela terra, aumentando o volume que escoa pelas ruas.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">→</span><div class="txt"><strong>Urbanização acelerada</strong><span>Ocupação de encostas e margens de rios em áreas de risco, muitas vezes sem planejamento adequado.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">→</span><div class="txt"><strong>Sistemas de drenagem insuficientes</strong><span>Redes de escoamento dimensionadas para chuvas do passado, incapazes de suportar eventos extremos cada vez mais frequentes.</span></div></li>
+    </ul>
+
+    <figure class="figure-wide glass" data-reveal>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Mapa_Enchentes_Juiz_de_Fora_MG_Fevereiro_de_2026.png/500px-Mapa_Enchentes_Juiz_de_Fora_MG_Fevereiro_de_2026.png" alt="Mapa de áreas de risco de enchente em Juiz de Fora, com base em dados do OpenStreetMap" loading="lazy">
+      <figcaption><span>Mapa das áreas de risco de enchente em Juiz de Fora — a cidade é a 9ª do país com maior população em áreas de risco de enchentes e deslizamentos.</span><span class="c">OpenStreetMap · <a href="https://commons.wikimedia.org/wiki/File:Mapa_Enchentes_Juiz_de_Fora_MG_Fevereiro_de_2026.png" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="numeros" class="wrap-wide" data-reveal>
+    <div class="section-head wrap" style="padding:0;">
+      <p class="section-num">03 — Em números</p>
+      <h2>A dimensão do desastre</h2>
+    </div>
+    <div class="datagrid" data-reveal-group>
+      <div class="datacard is-alert glass glass-hover">
+        <span class="n">73</span><span class="l">mortes confirmadas (65 em Juiz de Fora, 8 em Ubá)</span>
+        <span class="src"><a href="https://pt.wikipedia.org/wiki/Enchentes_e_deslizamentos_na_Zona_da_Mata_Mineira_em_2026" target="_blank" rel="noopener">Wikipédia</a></span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">8.000+</span><span class="l">pessoas desalojadas nos dois municípios</span>
+        <span class="src"><a href="https://uba.mg.gov.br/detalhe-da-materia/info/obras-de-reconstrucao-e-prevencao-a-enchentes-estao-em-andamento-em-uba/164026" target="_blank" rel="noopener">Prefeitura de Ubá</a></span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">170 mm</span><span class="l">de chuva em 3 horas em Ubá — a maior enchente em anos</span>
+        <span class="src">Defesa Civil de Ubá</span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">584 mm</span><span class="l">acumulados em fevereiro: o mês mais chuvoso já registrado em Ubá</span>
+        <span class="src">Prefeitura de Ubá</span>
+      </div>
+      <div class="datacard is-amber glass glass-hover">
+        <span class="n">2</span><span class="l">municípios em estado de calamidade pública (Juiz de Fora e Ubá)</span>
+        <span class="src"><a href="https://www.otempo.com.br/cidades/2026/2/24/apos-temporal-na-zona-da-mata-mineira-matias-barbosa-tambem-decreta-estado-de-calamidade-publica" target="_blank" rel="noopener">O Tempo</a></span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">+3</span><span class="l">outras cidades afetadas: Matias Barbosa, Senador Firmino e Leopoldina</span>
+        <span class="src">CNN Brasil</span>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding:0; margin-top: 26px;">
+      <div class="chart glass" style="max-width: 400px;">
+        <p class="chart-title">Chuva em Juiz de Fora — fevereiro de 2026 vs. média histórica (INMET)</p>
+        <div class="ratio-chart" data-reveal-group>
+          <div class="ratio-col">
+            <span class="rv">1×</span>
+            <div class="ratio-bar media" style="--fill:20%"></div>
+            <span class="rl">média histórica<br>de fevereiro</span>
+          </div>
+          <div class="ratio-col">
+            <span class="rv">4×+</span>
+            <div class="ratio-bar atual" style="--fill:80%"></div>
+            <span class="rl">fevereiro de 2026<br>(mês mais chuvoso já registrado)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="economia" class="wrap-wide" data-reveal>
+    <div class="section-head wrap" style="padding:0;">
+      <p class="section-num">04 — Impacto econômico</p>
+      <h2>As consequências vão além da água</h2>
+    </div>
+    <p class="lede wrap" style="padding:0;">O polo moveleiro de Ubá (mais de 450 empresas, cerca de 20 mil trabalhadores) e o polo metal-automotivo de Juiz de Fora foram duramente atingidos. Um mês após a tragédia, o comércio e a indústria da região ainda tentavam se reerguer.</p>
+
+    <div class="wrap" style="padding:0;">
+      <div class="chart glass">
+        <p class="chart-title">Negócios atingidos pela enchente</p>
+        <div class="bar-row"><span class="bl">Comércio de Ubá com danos graves</span><div class="bar-track"><div class="bar-fill is-alert" data-bar="94"></div></div><span class="bv">94%</span></div>
+        <div class="bar-row"><span class="bl">Comércio de Juiz de Fora com danos graves</span><div class="bar-track"><div class="bar-fill is-alert" data-bar="60"></div></div><span class="bv">60%</span></div>
+        <div class="bar-row"><span class="bl">Indústria da região em "apagão produtivo"</span><div class="bar-track"><div class="bar-fill is-amber" data-bar="40"></div></div><span class="bv">40%</span></div>
+        <div class="bar-row"><span class="bl">Empresas de Juiz de Fora avaliando fechar</span><div class="bar-track"><div class="bar-fill is-amber" data-bar="16"></div></div><span class="bv">16%</span></div>
+      </div>
+    </div>
+
+    <div class="datagrid" data-reveal-group>
+      <div class="datacard is-amber glass glass-hover">
+        <span class="n">R$ 650 mi</span><span class="l">prejuízo estimado ao setor produtivo de Ubá</span>
+        <span class="src"><a href="https://diariodocomercio.com.br/economia/apos-enchentes-industrias-moveleiras-uba-tentam-recuperar/" target="_blank" rel="noopener">Diário do Comércio</a></span>
+      </div>
+      <div class="datacard is-amber glass glass-hover">
+        <span class="n">5.700+</span><span class="l">empregos diretos em risco em Ubá</span>
+        <span class="src">Diário do Comércio</span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">94%</span><span class="l">dos comércios de Ubá tiveram danos graves</span>
+        <span class="src"><a href="https://www.otempo.com.br/cidades/2026/3/2/comercio-de-uba-registra-ate-r-204-mi-em-prejuizo-83-das-empresas-buscam-credito-emergencial" target="_blank" rel="noopener">O Tempo</a></span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">60%</span><span class="l">dos estabelecimentos de Juiz de Fora com danos graves</span>
+        <span class="src"><a href="https://www.acessa.com/cidade/2026/03/313831-comercio-de-juiz-de-fora-acumula-prejuizos-apos-enchentes-e-ate-16-das-empresas-ja-avaliam-fechar-as-portas.html" target="_blank" rel="noopener">Acessa.com</a></span>
+      </div>
+      <div class="datacard is-alert glass glass-hover">
+        <span class="n">16%</span><span class="l">das empresas de Juiz de Fora avaliam fechar as portas</span>
+        <span class="src">Acessa.com</span>
+      </div>
+      <div class="datacard glass glass-hover">
+        <span class="n">40%</span><span class="l">da indústria em "apagão produtivo" na região</span>
+        <span class="src"><a href="https://diariodocomercio.com.br/economia/apagao-industria-juiz-de-fora-uba-chuvas/" target="_blank" rel="noopener">Diário do Comércio</a></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" class="wrap-wide" data-reveal>
+    <div class="section-head wrap" style="padding:0;">
+      <p class="section-num">05 — Cobertura em vídeo</p>
+      <h2>Como a imprensa registrou o desastre</h2>
+    </div>
+    <div class="videogrid" data-reveal-group>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/xMcdjtl-1S8" title="Temporal em Minas Gerais deixa 53 mortos e 15 desaparecidos | LIVE CNN" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Temporal em MG deixa 53 mortos e 15 desaparecidos</span><span class="s">LIVE CNN</span></div>
+      </div>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/N7gMPGy35dc" title="Morro em Juiz de Fora desliza sobre casas após fortes chuvas" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Morro desliza sobre casas em Juiz de Fora</span><span class="s">CNN 360º</span></div>
+      </div>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/SydBLAwqjnY" title="Jornalista relata cenário de destruição após chuvas em Juiz de Fora" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Jornalista relata cenário de destruição</span><span class="s">Timeline</span></div>
+      </div>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/0Gp_oLAkHN4" title="Situação de Juiz de Fora após novas chuvas" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Situação após as novas chuvas do dia 25</span><span class="s">CNN Novo Dia</span></div>
+      </div>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/XxmSKTs1_qM" title="Juiz de Fora tenta retomar a rotina após chuvas" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Juiz de Fora tenta retomar a rotina</span><span class="s">Reportagem</span></div>
+      </div>
+
+      <div class="videocard glass glass-hover">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/x031ZzA3jzU" title="Itatiaia entra ao vivo de Juiz de Fora com atualizações" loading="lazy" allowfullscreen></iframe></div>
+        <div class="video-meta"><span class="t">Ao vivo de Juiz de Fora com atualizações dos estragos</span><span class="s">Itatiaia</span></div>
+      </div>
+
+    </div>
+    <p class="note">Os vídeos acima são de veículos de imprensa (CNN Brasil, Itatiaia e outros) e estão incorporados diretamente do YouTube — os créditos são de cada emissora. Ao abrir este arquivo num navegador comum (fora do ambiente de pré-visualização do Claude), os vídeos tocam normalmente.</p>
+  </section>
+
+  <section id="depoimentos" class="wrap-wide" data-reveal>
+    <div class="section-head wrap" style="padding:0;">
+      <p class="section-num">06 — Vozes de quem viveu</p>
+      <h2>Depoimentos dos afetados</h2>
+    </div>
+    <p class="lede wrap" style="padding:0;">Entrevistas com comerciantes afetados pelas enchentes. Os cards abaixo estão marcados pra receber os vídeos reais — veja a instrução de código logo depois da grade.</p>
+
+    <div class="testgrid" data-reveal-group>
+      <div class="testitem glass glass-hover">
+        <div class="testcard"><div class="icon">▶</div><span class="label">Império da Moda Kids</span><span class="tag">substituir por vídeo</span></div>
+        <div class="bizmeta">
+          <span class="biz-addr">Rua Coronel Carlos Brandão, 167 — Ubá/MG</span>
+          <span class="biz-contact">+55 32 3528-3041</span>
+        </div>
+      </div>
+      <div class="testitem glass glass-hover">
+        <div class="testcard"><div class="icon">▶</div><span class="label">Studio Performance</span><span class="tag">substituir por vídeo</span></div>
+        <div class="bizmeta">
+          <span class="biz-addr">Rua Coronel Bernardino Carneiro, 41 — Ubá/MG</span>
+          <span class="biz-contact">(31) 98310-1440</span>
+        </div>
+      </div>
+      <div class="testitem glass glass-hover">
+        <div class="testcard"><div class="icon">▶</div><span class="label">Novauto Borrachas</span><span class="tag">substituir por vídeo</span></div>
+        <div class="bizmeta">
+          <span class="biz-addr">Av. Comendador Jacinto Soares de Souza Lima, 1765 — Ubá/MG</span>
+          <span class="biz-contact">(32) 3531-7566 · <a href="https://www.instagram.com/novautoborrachas/" target="_blank" rel="noopener">@novautoborrachas</a></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Contatos confirmados pelo grupo. Antes de publicar o site publicamente, confirmem com cada estabelecimento se está tudo bem divulgar o telefone deles.</p>
+
+    <p class="note">Para trocar um card pelo vídeo real: abra o arquivo <code>index.html</code> num editor de texto, encontre o bloco <code>&lt;div class="testcard"&gt;</code> correspondente e troque seu conteúdo por <code>&lt;video controls src="nome-do-arquivo.mp4"&gt;&lt;/video&gt;</code> (com o vídeo salvo na mesma pasta do site), ou por um <code>&lt;iframe&gt;</code> do YouTube, igual aos da seção de vídeos acima.</p>
+  </section>
+
+  <section id="noticias" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">07 — Cobertura da imprensa</p>
+      <h2>Notícias</h2>
+    </div>
+
+    <div class="newsgroup glass">
+      <h3>O desastre</h3>
+      <ul class="newslist">
+        <li><a href="https://pt.wikipedia.org/wiki/Enchentes_e_deslizamentos_na_Zona_da_Mata_Mineira_em_2026" target="_blank" rel="noopener"><span class="t">Enchentes e deslizamentos na Zona da Mata Mineira em 2026</span><span class="src">Wikipédia</span></a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/temporal-em-juiz-de-fora-e-uba-deixa-mortos-e-desaparecidos/" target="_blank" rel="noopener"><span class="t">Temporal em Juiz de Fora e Ubá deixa mortos e desaparecidos</span><span class="src">CNN Brasil</span></a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/o-que-sabemos-sobre-as-fortes-chuvas-que-atingiram-mg/" target="_blank" rel="noopener"><span class="t">O que sabemos sobre a chuva que devastou MG</span><span class="src">CNN Brasil</span></a></li>
+        <li><a href="https://www.brasildefato.com.br/2026/02/27/chuvas-fortes-deixam-64-mortos-em-juiz-de-fora-e-uba/" target="_blank" rel="noopener"><span class="t">Chuvas fortes deixam 64 mortos em Juiz de Fora e Ubá</span><span class="src">Brasil de Fato</span></a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/geral/noticia/2026-02/mortes-causadas-pelos-temporais-em-juiz-de-fora-e-uba-chegam-53" target="_blank" rel="noopener"><span class="t">Mortes causadas pelos temporais chegam a 53</span><span class="src">Agência Brasil</span></a></li>
+        <li><a href="https://www.correiobraziliense.com.br/brasil/2026/03/7365678-apos-chuvas-em-mg-mortes-passam-de-70-em-juiz-de-fora-e-uba.html" target="_blank" rel="noopener"><span class="t">Após chuvas em MG, mortes passam de 70</span><span class="src">Correio Braziliense</span></a></li>
+      </ul>
+    </div>
+
+    <div class="newsgroup glass">
+      <h3>Impacto econômico</h3>
+      <ul class="newslist">
+        <li><a href="https://diariodocomercio.com.br/economia/apos-enchentes-industrias-moveleiras-uba-tentam-recuperar/" target="_blank" rel="noopener"><span class="t">Enchentes em Ubá causam prejuízo de até R$ 650 milhões</span><span class="src">Diário do Comércio</span></a></li>
+        <li><a href="https://www.otempo.com.br/cidades/2026/3/2/comercio-de-uba-registra-ate-r-204-mi-em-prejuizo-83-das-empresas-buscam-credito-emergencial" target="_blank" rel="noopener"><span class="t">Comércio de Ubá registra até R$ 204 mi em prejuízo</span><span class="src">O Tempo</span></a></li>
+        <li><a href="https://www.acessa.com/cidade/2026/03/313831-comercio-de-juiz-de-fora-acumula-prejuizos-apos-enchentes-e-ate-16-das-empresas-ja-avaliam-fechar-as-portas.html" target="_blank" rel="noopener"><span class="t">16% das empresas de Juiz de Fora avaliam fechar as portas</span><span class="src">Acessa.com</span></a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/apagao-industria-juiz-de-fora-uba-chuvas/" target="_blank" rel="noopener"><span class="t">"Apagão produtivo" afeta 40% da indústria</span><span class="src">Diário do Comércio</span></a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/comerciantes-zona-da-mata-recomeco/" target="_blank" rel="noopener"><span class="t">Comerciantes transformam perdas em recomeços</span><span class="src">Diário do Comércio</span></a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-03/familias-lutam-para-reconstruir-vida-um-mes-depois-de-chuvas-em-mg" target="_blank" rel="noopener"><span class="t">Famílias lutam para reconstruir a vida um mês depois</span><span class="src">Agência Brasil</span></a></li>
+      </ul>
+    </div>
+
+    <div class="newsgroup glass">
+      <h3>Reconstrução e prevenção</h3>
+      <ul class="newslist">
+        <li><a href="https://agenciagov.ebc.com.br/noticias/202604/governo-do-brasil-mobiliza-cerca-de-r-2-bilhoes-para-resposta-e-reconstrucao-em-juiz-de-fora-e-uba" target="_blank" rel="noopener"><span class="t">Governo do Brasil mobiliza cerca de R$ 2 bi para reconstrução</span><span class="src">Agência Gov</span></a></li>
+        <li><a href="https://www.gov.br/mdr/pt-br/noticias/prefeituras-de-uba-e-juiz-de-fora-ja-podem-cadastrar-familias-para-receber-auxilio-reconstrucao" target="_blank" rel="noopener"><span class="t">Famílias já podem se cadastrar para o Auxílio Reconstrução</span><span class="src">Ministério da Integração e do Desenvolvimento Regional</span></a></li>
+        <li><a href="https://tribunademinas.com.br/noticias/regiao/11-06-2026/uba-lanca-ferramenta-para-acompanhar-obras-de-reconstrucao-apos-as-chuvas.html" target="_blank" rel="noopener"><span class="t">Ubá lança ferramenta para acompanhar obras de reconstrução</span><span class="src">Tribuna de Minas</span></a></li>
+        <li><a href="https://theconversation.com/enchentes-em-mg-e-no-rs-perdas-humanas-e-economicas-mostram-urgencia-da-prevencao-278002" target="_blank" rel="noopener"><span class="t">Perdas humanas e econômicas mostram urgência da prevenção</span><span class="src">The Conversation</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="reconstrucao" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">08 — Resposta do poder público</p>
+      <h2>O que já está sendo feito</h2>
+    </div>
+    <div class="recongrid" data-reveal-group>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 2 bi</span><p>mobilizados pelo Governo Federal para resposta e reconstrução</p></div>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 7.300</span><p>Auxílio Reconstrução por família com perdas materiais — 830 famílias já receberam</p></div>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 88,4 mi</span><p>em obras de contenção e recuperação de vias (JF: R$ 29,6 mi · Ubá: R$ 58,7 mi)</p></div>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 14,9 mi</span><p>para reforço da rede de saúde, com envio da Força Nacional do SUS</p></div>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 4,56 mi</span><p>repassados para apoio emergencial a 126 escolas da região</p></div>
+    </div>
+
+    <figure class="figure-wide glass" data-reveal>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/28.02.2026_-_Visita_a_%C3%A1reas_afetadas_pelas_chuvas_no_munic%C3%ADpio_de_Ub%C3%A1_%2855121133590%29.jpg/500px-28.02.2026_-_Visita_a_%C3%A1reas_afetadas_pelas_chuvas_no_munic%C3%ADpio_de_Ub%C3%A1_%2855121133590%29.jpg" alt="Presidente Luiz Inácio Lula da Silva visita áreas atingidas pelo desastre em Ubá" loading="lazy">
+      <figcaption><span>Visita a áreas atingidas pelo desastre em Ubá, 28 de fevereiro de 2026.</span><span class="c">Ricardo Stuckert/PR · <a href="https://commons.wikimedia.org/wiki/Category:Juiz_de_Fora" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="proposta" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">09 — Prevenir custa menos que reconstruir</p>
+      <h2>O que a evidência científica recomenda</h2>
+    </div>
+    <p class="lede">Estudos globais sobre gestão de risco de desastres indicam que cada real investido em prevenção pode gerar retornos de até quatro vezes o valor em perdas evitadas. O desafio não é apenas climático — é político.</p>
+
+    <ul class="checklist">
+      <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Sistemas de alerta precoce e comunicação</strong><span>Monitoramento de chuva e nível dos rios integrado a sirenes e aplicativos, com a população capacitada a entender e agir diante dos alertas.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Conservação e restauração ambiental</strong><span>Recuperação de matas ciliares e áreas de encosta que naturalmente absorvem e contêm o excesso de água.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Planejamento urbano e regulação de ocupação</strong><span>Impedir novas construções em áreas de risco já mapeadas e remanejar famílias que já vivem nelas.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Infraestrutura "verde" e soluções baseadas na natureza</strong><span>Parques lineares, jardins de chuva e pavimentos permeáveis que reduzem a impermeabilização do solo.</span></div></li>
+      <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Modernização dos sistemas de drenagem</strong><span>Redes dimensionadas para os volumes de chuva extrema que vêm se tornando mais frequentes.</span></div></li>
+    </ul>
+    <p style="margin-top:24px; color:var(--ink-soft); max-width:66ch;">As enchentes fazem parte da natureza, mas a dimensão dos seus impactos depende das escolhas que fazemos. Investir em prevenção é investir na proteção de vidas, das cidades e da economia.</p>
+  </section>
+
+  <section id="fontes" class="wrap" data-reveal>
+    <div class="section-head">
+      <p class="section-num">10 — Referências</p>
+      <h2>Fontes</h2>
+    </div>
+    <div class="sourcespanel glass">
+      <ul class="sources">
+        <li><a href="https://pt.wikipedia.org/wiki/Enchentes_e_deslizamentos_na_Zona_da_Mata_Mineira_em_2026" target="_blank" rel="noopener">Wikipédia — Enchentes e deslizamentos na Zona da Mata Mineira em 2026</a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/temporal-em-juiz-de-fora-e-uba-deixa-mortos-e-desaparecidos/" target="_blank" rel="noopener">CNN Brasil — Temporal em Juiz de Fora e Ubá</a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/o-que-sabemos-sobre-as-fortes-chuvas-que-atingiram-mg/" target="_blank" rel="noopener">CNN Brasil — O que sabemos sobre as chuvas</a></li>
+        <li><a href="https://www.correiobraziliense.com.br/brasil/2026/03/7365678-apos-chuvas-em-mg-mortes-passam-de-70-em-juiz-de-fora-e-uba.html" target="_blank" rel="noopener">Correio Braziliense — Mortes passam de 70</a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/geral/noticia/2026-02/mortes-causadas-pelos-temporais-em-juiz-de-fora-e-uba-chegam-53" target="_blank" rel="noopener">Agência Brasil — Mortes chegam a 53</a></li>
+        <li><a href="https://www.brasildefato.com.br/2026/02/27/chuvas-fortes-deixam-64-mortos-em-juiz-de-fora-e-uba/" target="_blank" rel="noopener">Brasil de Fato — 64 mortos</a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-03/familias-lutam-para-reconstruir-vida-um-mes-depois-de-chuvas-em-mg" target="_blank" rel="noopener">Agência Brasil — Famílias lutam para reconstruir a vida</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/apos-enchentes-industrias-moveleiras-uba-tentam-recuperar/" target="_blank" rel="noopener">Diário do Comércio — Prejuízo de R$ 650 milhões</a></li>
+        <li><a href="https://www.otempo.com.br/cidades/2026/3/2/comercio-de-uba-registra-ate-r-204-mi-em-prejuizo-83-das-empresas-buscam-credito-emergencial" target="_blank" rel="noopener">O Tempo — Comércio de Ubá</a></li>
+        <li><a href="https://www.acessa.com/cidade/2026/03/313831-comercio-de-juiz-de-fora-acumula-prejuizos-apos-enchentes-e-ate-16-das-empresas-ja-avaliam-fechar-as-portas.html" target="_blank" rel="noopener">Acessa.com — Comércio de Juiz de Fora</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/apagao-industria-juiz-de-fora-uba-chuvas/" target="_blank" rel="noopener">Diário do Comércio — Apagão produtivo</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/comerciantes-zona-da-mata-recomeco/" target="_blank" rel="noopener">Diário do Comércio — Comerciantes recomeçam</a></li>
+        <li><a href="https://agenciagov.ebc.com.br/noticias/202604/governo-do-brasil-mobiliza-cerca-de-r-2-bilhoes-para-resposta-e-reconstrucao-em-juiz-de-fora-e-uba" target="_blank" rel="noopener">Agência Gov — R$ 2 bi para reconstrução</a></li>
+        <li><a href="https://www.gov.br/mdr/pt-br/noticias/prefeituras-de-uba-e-juiz-de-fora-ja-podem-cadastrar-familias-para-receber-auxilio-reconstrucao" target="_blank" rel="noopener">Gov.br/MDR — Auxílio Reconstrução</a></li>
+        <li><a href="https://tribunademinas.com.br/noticias/regiao/11-06-2026/uba-lanca-ferramenta-para-acompanhar-obras-de-reconstrucao-apos-as-chuvas.html" target="_blank" rel="noopener">Tribuna de Minas — Ferramenta de acompanhamento de obras</a></li>
+        <li><a href="https://theconversation.com/enchentes-em-mg-e-no-rs-perdas-humanas-e-economicas-mostram-urgencia-da-prevencao-278002" target="_blank" rel="noopener">The Conversation — Urgência da prevenção</a></li>
+        <li><a href="https://www.otempo.com.br/cidades/2026/2/24/apos-temporal-na-zona-da-mata-mineira-matias-barbosa-tambem-decreta-estado-de-calamidade-publica" target="_blank" rel="noopener">O Tempo — Matias Barbosa decreta calamidade</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/Category:Juiz_de_Fora" target="_blank" rel="noopener">Wikimedia Commons — Fotografias da região (Ricardo Stuckert/PR, Canal Gov)</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Mapa_Enchentes_Juiz_de_Fora_MG_Fevereiro_de_2026.png" target="_blank" rel="noopener">Wikimedia Commons / OpenStreetMap — Mapa de áreas de risco</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <p>Site produzido como material de apoio a um trabalho escolar sobre as enchentes de fevereiro de 2026 na Zona da Mata Mineira. Fotos e mapa: Wikimedia Commons (créditos individuais em cada legenda). Vídeos incorporados do YouTube, créditos de cada emissora. Substitua a seção de depoimentos pelos vídeos reais das entrevistas realizadas pelo grupo.</p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var revealEls = document.querySelectorAll('[data-reveal], [data-reveal-group]');
+  if(reduce || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  var bars = document.querySelectorAll('.bar-fill[data-bar]');
+  function fillBar(el){ el.style.setProperty('--fill', el.getAttribute('data-bar') + '%'); el.classList.add('is-filled'); }
+  if(reduce || !('IntersectionObserver' in window)){
+    bars.forEach(fillBar);
+  } else {
+    var barIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fillBar(e.target); barIo.unobserve(e.target); } });
+    }, {threshold: 0.4});
+    bars.forEach(function(el){ barIo.observe(el); });
+  }
+
+  var ratioBars = document.querySelectorAll('.ratio-bar');
+  function fillRatio(el){ el.classList.add('is-filled'); }
+  if(reduce || !('IntersectionObserver' in window)){
+    ratioBars.forEach(fillRatio);
+  } else {
+    var ratioIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fillRatio(e.target); ratioIo.unobserve(e.target); } });
+    }, {threshold: 0.4});
+    ratioBars.forEach(function(el){ ratioIo.observe(el); });
+  }
+
+  var counters = document.querySelectorAll('[data-count]');
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1300, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var val = Math.floor(p * target);
+      el.textContent = val.toLocaleString('pt-BR') + suffix;
+      if(p < 1){ requestAnimationFrame(step); } else { el.textContent = target.toLocaleString('pt-BR') + suffix; }
+    }
+    requestAnimationFrame(step);
+  }
+  if(reduce || !('IntersectionObserver' in window)){
+    counters.forEach(function(el){ el.textContent = parseFloat(el.getAttribute('data-count')).toLocaleString('pt-BR') + (el.getAttribute('data-suffix') || ''); });
+  } else {
+    var cIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ animateCount(e.target); cIo.unobserve(e.target); } });
+    }, {threshold: 0.6});
+    counters.forEach(function(el){ cIo.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
