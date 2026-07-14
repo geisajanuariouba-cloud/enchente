@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quando a chuva vira desastre — enchentes na Zona da Mata Mineira</title>
+<title>Quando a chuva vira desastre: enchentes na Zona da Mata Mineira</title>
 <meta name="description" content="Dossiê escolar sobre as enchentes de fevereiro de 2026 em Juiz de Fora e Ubá (MG): o que aconteceu, números, vídeos, depoimentos e propostas de prevenção.">
 <style>/* required styles */
 
@@ -669,7 +669,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 </style>
 <style>
 
-/* ---------- tokens — committed dark "storm glass" theme ---------- */
+/* ---------- tokens: committed dark "storm glass" theme ---------- */
 :root{
   --bg-0: #060a0e;
   --bg-1: #0b131a;
@@ -710,7 +710,7 @@ body{
   overflow-x: hidden;
 }
 
-/* ambient glow blobs, fixed, decorative — no filter:blur, radial-gradient already fades softly (blur() on large fixed layers is expensive to composite) */
+/* ambient glow blobs, fixed, decorative. No filter:blur: radial-gradient already fades softly (blur() on large fixed layers is expensive to composite) */
 .glow{ position: fixed; border-radius: 50%; z-index: -1; pointer-events: none; }
 .glow-a{ width: 700px; height: 700px; top: -220px; left: -200px; background: radial-gradient(circle, rgba(88,196,230,0.22), transparent 65%); }
 .glow-b{ width: 760px; height: 760px; top: 30%; right: -260px; background: radial-gradient(circle, rgba(143,134,242,0.18), transparent 65%); }
@@ -841,10 +841,6 @@ img{ max-width: 100%; display: block; }
 /* ---------- section shell ---------- */
 section{ padding: 68px 0; }
 .section-head{ margin-bottom: 28px; }
-.section-num{
-  font-family: var(--font-mono); font-size: 12px; color: var(--accent);
-  letter-spacing: 0.08em; margin: 0 0 8px;
-}
 h2{
   font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.1rem);
   margin: 0; text-wrap: balance; color: var(--ink);
@@ -1040,7 +1036,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
     <div class="hero-media">
       <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg" alt="Vista aérea da área atingida pelas enchentes na margem do rio Paraibuna, bairro Industrial, Juiz de Fora">
       <div class="scrim"></div>
-      <p class="photo-credit">Bairro Industrial, Juiz de Fora — Canal Gov / <a href="https://commons.wikimedia.org/wiki/File:Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 4.0</p>
+      <p class="photo-credit">Bairro Industrial, Juiz de Fora. Foto: Canal Gov / <a href="https://commons.wikimedia.org/wiki/File:Enchentes_e_deslizamentos_na_Zona_da_Mata_mineira_05.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 4.0</p>
     </div>
 
     <div class="hero-card glass wrap">
@@ -1049,7 +1045,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
       <p class="dek">Entre 23 e 24 de fevereiro de 2026, um temporal extremo atingiu Juiz de Fora e Ubá, em Minas Gerais, causando enchentes e deslizamentos que mudaram a vida de milhares de famílias. Este dossiê reúne o que aconteceu, os números, os vídeos, os depoimentos e as propostas para que não se repita.</p>
 
       <div class="statstrip">
-        <div class="statcell is-alert glass"><span class="n" data-count="73">0</span><span class="l">mortes confirmadas — 65 em Juiz de Fora, 8 em Ubá</span></div>
+        <div class="statcell is-alert glass"><span class="n" data-count="73">0</span><span class="l">mortes confirmadas (65 em Juiz de Fora, 8 em Ubá)</span></div>
         <div class="statcell glass"><span class="n" data-count="8000" data-suffix="+">0</span><span class="l">pessoas desalojadas</span></div>
         <div class="statcell glass"><span class="n">584 mm</span><span class="l">chuva em fevereiro (recorde)</span></div>
         <div class="statcell glass"><span class="n">R$ 2 bi</span><span class="l">mobilizados p/ reconstrução</span></div>
@@ -1078,7 +1074,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
       </div>
       <div class="tl-item glass">
         <div class="tl-date">dias seguintes</div>
-        <div class="tl-body"><p>As buscas por vítimas continuam e o número de mortos é atualizado diariamente pela Defesa Civil, até o saldo final confirmado de <strong>73 mortes</strong> — 65 em Juiz de Fora e 8 em Ubá — e mais de <strong>8 mil pessoas desalojadas</strong>.</p></div>
+        <div class="tl-body"><p>As buscas por vítimas continuam e o número de mortos é atualizado diariamente pela Defesa Civil, até o saldo final confirmado de <strong>73 mortes</strong> (65 em Juiz de Fora e 8 em Ubá), além de mais de <strong>8 mil pessoas desalojadas</strong>.</p></div>
       </div>
       <div class="tl-item glass">
         <div class="tl-date">2 mar</div>
@@ -1114,7 +1110,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
 
     <figure class="figure-wide glass map-figure" data-reveal>
       <div id="disaster-map" class="map-canvas" role="img" aria-label="Mapa interativo da Zona da Mata Mineira com os municípios afetados pelas enchentes de fevereiro de 2026"></div>
-      <figcaption><span>Mapa interativo — arraste para navegar e use os controles (ou o scroll) para dar zoom nos municípios afetados.</span><span class="c">Tiles: CARTO / OpenStreetMap contributors</span></figcaption>
+      <figcaption><span>Mapa interativo: arraste para navegar e use os controles (ou o scroll) para dar zoom nos municípios afetados.</span><span class="c">Tiles: CARTO / OpenStreetMap contributors</span></figcaption>
     </figure>
   </section>
 
@@ -1132,7 +1128,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
         <span class="src"><a href="https://uba.mg.gov.br/detalhe-da-materia/info/obras-de-reconstrucao-e-prevencao-a-enchentes-estao-em-andamento-em-uba/164026" target="_blank" rel="noopener">Prefeitura de Ubá</a></span>
       </div>
       <div class="datacard glass glass-hover">
-        <span class="n">170 mm</span><span class="l">de chuva em 3 horas em Ubá — a maior enchente em anos</span>
+        <span class="n">170 mm</span><span class="l">de chuva em 3 horas em Ubá, a maior enchente em anos</span>
         <span class="src">Defesa Civil de Ubá</span>
       </div>
       <div class="datacard glass glass-hover">
@@ -1151,7 +1147,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
 
     <div class="wrap" style="padding:0; margin-top: 26px;">
       <div class="chart glass" style="max-width: 400px;">
-        <p class="chart-title">Chuva em Juiz de Fora — fevereiro de 2026 vs. média histórica (INMET)</p>
+        <p class="chart-title">Chuva em Juiz de Fora: fevereiro de 2026 vs. média histórica (INMET)</p>
         <div class="ratio-chart" data-reveal-group>
           <div class="ratio-col">
             <span class="rv">1×</span>
@@ -1244,7 +1240,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
       </div>
 
     </div>
-    <p class="note">Os vídeos acima são de veículos de imprensa (CNN Brasil, Itatiaia e outros) e estão incorporados diretamente do YouTube — os créditos são de cada emissora. Ao abrir este arquivo num navegador comum (fora do ambiente de pré-visualização do Claude), os vídeos tocam normalmente.</p>
+    <p class="note">Os vídeos acima são de veículos de imprensa (CNN Brasil, Itatiaia e outros) e estão incorporados diretamente do YouTube; os créditos são de cada emissora. Ao abrir este arquivo num navegador comum (fora do ambiente de pré-visualização do Claude), os vídeos tocam normalmente.</p>
   </section>
 
   <section id="depoimentos" class="wrap-wide" data-reveal>
@@ -1260,17 +1256,17 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
       <div class="testimony-list">
         <div class="bizcard glass glass-hover">
           <span class="biz-name">Império da Moda Kids</span>
-          <span class="biz-addr">Rua Coronel Carlos Brandão, 167 — Ubá/MG</span>
+          <span class="biz-addr">Rua Coronel Carlos Brandão, 167, Ubá/MG</span>
           <span class="biz-contact">+55 32 3528-3041</span>
         </div>
         <div class="bizcard glass glass-hover">
           <span class="biz-name">Studio Performance</span>
-          <span class="biz-addr">Rua Coronel Bernardino Carneiro, 41 — Ubá/MG</span>
+          <span class="biz-addr">Rua Coronel Bernardino Carneiro, 41, Ubá/MG</span>
           <span class="biz-contact">(31) 98310-1440</span>
         </div>
         <div class="bizcard glass glass-hover">
           <span class="biz-name">Novauto Borrachas</span>
-          <span class="biz-addr">Av. Comendador Jacinto Soares de Souza Lima, 1765 — Ubá/MG</span>
+          <span class="biz-addr">Av. Comendador Jacinto Soares de Souza Lima, 1765, Ubá/MG</span>
           <span class="biz-contact">(32) 3531-7566 · <a href="https://www.instagram.com/novautoborrachas/" target="_blank" rel="noopener">@novautoborrachas</a></span>
         </div>
       </div>
@@ -1325,7 +1321,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
     </div>
     <div class="recongrid" data-reveal-group>
       <div class="reconcard glass glass-hover"><span class="n">R$ 2 bi</span><p>mobilizados pelo Governo Federal para resposta e reconstrução</p></div>
-      <div class="reconcard glass glass-hover"><span class="n">R$ 7.300</span><p>Auxílio Reconstrução por família com perdas materiais — 830 famílias já receberam</p></div>
+      <div class="reconcard glass glass-hover"><span class="n">R$ 7.300</span><p>Auxílio Reconstrução por família com perdas materiais; 830 famílias já receberam</p></div>
       <div class="reconcard glass glass-hover"><span class="n">R$ 88,4 mi</span><p>em obras de contenção e recuperação de vias (JF: R$ 29,6 mi · Ubá: R$ 58,7 mi)</p></div>
       <div class="reconcard glass glass-hover"><span class="n">R$ 14,9 mi</span><p>para reforço da rede de saúde, com envio da Força Nacional do SUS</p></div>
       <div class="reconcard glass glass-hover"><span class="n">R$ 4,56 mi</span><p>repassados para apoio emergencial a 126 escolas da região</p></div>
@@ -1341,7 +1337,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
     <div class="section-head">
       <h2>O que a evidência científica recomenda</h2>
     </div>
-    <p class="lede">Estudos globais sobre gestão de risco de desastres indicam que cada real investido em prevenção pode gerar retornos de até quatro vezes o valor em perdas evitadas. O desafio não é apenas climático — é político.</p>
+    <p class="lede">Estudos globais sobre gestão de risco de desastres indicam que cada real investido em prevenção pode gerar retornos de até quatro vezes o valor em perdas evitadas. O desafio não é apenas climático, é político.</p>
 
     <ul class="checklist">
       <li class="glass glass-hover"><span class="mark">✓</span><div class="txt"><strong>Sistemas de alerta precoce e comunicação</strong><span>Monitoramento de chuva e nível dos rios integrado a sirenes e aplicativos, com a população capacitada a entender e agir diante dos alertas.</span></div></li>
@@ -1359,33 +1355,33 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
     </div>
     <div class="sourcespanel glass">
       <ul class="sources">
-        <li><a href="https://jfinforma.com/2026/03/01/juiz-de-fora-65-mortes-chuvas-pcmg-detalha-vitimas-uba/" target="_blank" rel="noopener">JF Informa — Juiz de Fora confirma 65 mortes; PCMG detalha vítimas</a></li>
-        <li><a href="https://tribunademinas.com.br/noticias/cidade/08-03-2026/65-vitimas-jf.html" target="_blank" rel="noopener">Tribuna de Minas — As 65 vítimas de Juiz de Fora</a></li>
-        <li><a href="https://tribunademinas.com.br/noticias/cidade/24-02-2026/chuvas-mortos-em-jf.html" target="_blank" rel="noopener">Tribuna de Minas — Chuvas deixam 14 mortos em Juiz de Fora</a></li>
-        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/temporal-em-juiz-de-fora-e-uba-deixa-mortos-e-desaparecidos/" target="_blank" rel="noopener">CNN Brasil — Temporal em Juiz de Fora e Ubá</a></li>
-        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/o-que-sabemos-sobre-as-fortes-chuvas-que-atingiram-mg/" target="_blank" rel="noopener">CNN Brasil — O que sabemos sobre as chuvas</a></li>
-        <li><a href="https://www.correiobraziliense.com.br/brasil/2026/03/7365678-apos-chuvas-em-mg-mortes-passam-de-70-em-juiz-de-fora-e-uba.html" target="_blank" rel="noopener">Correio Braziliense — Mortes passam de 70</a></li>
-        <li><a href="https://agenciabrasil.ebc.com.br/geral/noticia/2026-02/mortes-causadas-pelos-temporais-em-juiz-de-fora-e-uba-chegam-53" target="_blank" rel="noopener">Agência Brasil — Mortes chegam a 53</a></li>
-        <li><a href="https://www.brasildefato.com.br/2026/02/27/chuvas-fortes-deixam-64-mortos-em-juiz-de-fora-e-uba/" target="_blank" rel="noopener">Brasil de Fato — 64 mortos</a></li>
-        <li><a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-03/familias-lutam-para-reconstruir-vida-um-mes-depois-de-chuvas-em-mg" target="_blank" rel="noopener">Agência Brasil — Famílias lutam para reconstruir a vida</a></li>
-        <li><a href="https://diariodocomercio.com.br/economia/apos-enchentes-industrias-moveleiras-uba-tentam-recuperar/" target="_blank" rel="noopener">Diário do Comércio — Prejuízo de R$ 650 milhões</a></li>
-        <li><a href="https://www.otempo.com.br/cidades/2026/3/2/comercio-de-uba-registra-ate-r-204-mi-em-prejuizo-83-das-empresas-buscam-credito-emergencial" target="_blank" rel="noopener">O Tempo — Comércio de Ubá</a></li>
-        <li><a href="https://www.acessa.com/cidade/2026/03/313831-comercio-de-juiz-de-fora-acumula-prejuizos-apos-enchentes-e-ate-16-das-empresas-ja-avaliam-fechar-as-portas.html" target="_blank" rel="noopener">Acessa.com — Comércio de Juiz de Fora</a></li>
-        <li><a href="https://diariodocomercio.com.br/economia/apagao-industria-juiz-de-fora-uba-chuvas/" target="_blank" rel="noopener">Diário do Comércio — Apagão produtivo</a></li>
-        <li><a href="https://diariodocomercio.com.br/economia/comerciantes-zona-da-mata-recomeco/" target="_blank" rel="noopener">Diário do Comércio — Comerciantes recomeçam</a></li>
-        <li><a href="https://agenciagov.ebc.com.br/noticias/202604/governo-do-brasil-mobiliza-cerca-de-r-2-bilhoes-para-resposta-e-reconstrucao-em-juiz-de-fora-e-uba" target="_blank" rel="noopener">Agência Gov — R$ 2 bi para reconstrução</a></li>
-        <li><a href="https://www.gov.br/mdr/pt-br/noticias/prefeituras-de-uba-e-juiz-de-fora-ja-podem-cadastrar-familias-para-receber-auxilio-reconstrucao" target="_blank" rel="noopener">Gov.br/MDR — Auxílio Reconstrução</a></li>
-        <li><a href="https://tribunademinas.com.br/noticias/regiao/11-06-2026/uba-lanca-ferramenta-para-acompanhar-obras-de-reconstrucao-apos-as-chuvas.html" target="_blank" rel="noopener">Tribuna de Minas — Ferramenta de acompanhamento de obras</a></li>
-        <li><a href="https://theconversation.com/enchentes-em-mg-e-no-rs-perdas-humanas-e-economicas-mostram-urgencia-da-prevencao-278002" target="_blank" rel="noopener">The Conversation — Urgência da prevenção</a></li>
-        <li><a href="https://www.otempo.com.br/cidades/2026/2/24/apos-temporal-na-zona-da-mata-mineira-matias-barbosa-tambem-decreta-estado-de-calamidade-publica" target="_blank" rel="noopener">O Tempo — Matias Barbosa decreta calamidade</a></li>
-        <li><a href="https://commons.wikimedia.org/wiki/Category:Juiz_de_Fora" target="_blank" rel="noopener">Wikimedia Commons — Fotografias da região (Ricardo Stuckert/PR, Canal Gov)</a></li>
-        <li><a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet.js + CARTO / OpenStreetMap — mapa interativo</a></li>
+        <li><a href="https://jfinforma.com/2026/03/01/juiz-de-fora-65-mortes-chuvas-pcmg-detalha-vitimas-uba/" target="_blank" rel="noopener">JF Informa: Juiz de Fora confirma 65 mortes; PCMG detalha vítimas</a></li>
+        <li><a href="https://tribunademinas.com.br/noticias/cidade/08-03-2026/65-vitimas-jf.html" target="_blank" rel="noopener">Tribuna de Minas: As 65 vítimas de Juiz de Fora</a></li>
+        <li><a href="https://tribunademinas.com.br/noticias/cidade/24-02-2026/chuvas-mortos-em-jf.html" target="_blank" rel="noopener">Tribuna de Minas: Chuvas deixam 14 mortos em Juiz de Fora</a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/temporal-em-juiz-de-fora-e-uba-deixa-mortos-e-desaparecidos/" target="_blank" rel="noopener">CNN Brasil: Temporal em Juiz de Fora e Ubá</a></li>
+        <li><a href="https://www.cnnbrasil.com.br/nacional/sudeste/mg/o-que-sabemos-sobre-as-fortes-chuvas-que-atingiram-mg/" target="_blank" rel="noopener">CNN Brasil: O que sabemos sobre as chuvas</a></li>
+        <li><a href="https://www.correiobraziliense.com.br/brasil/2026/03/7365678-apos-chuvas-em-mg-mortes-passam-de-70-em-juiz-de-fora-e-uba.html" target="_blank" rel="noopener">Correio Braziliense: Mortes passam de 70</a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/geral/noticia/2026-02/mortes-causadas-pelos-temporais-em-juiz-de-fora-e-uba-chegam-53" target="_blank" rel="noopener">Agência Brasil: Mortes chegam a 53</a></li>
+        <li><a href="https://www.brasildefato.com.br/2026/02/27/chuvas-fortes-deixam-64-mortos-em-juiz-de-fora-e-uba/" target="_blank" rel="noopener">Brasil de Fato: 64 mortos</a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-03/familias-lutam-para-reconstruir-vida-um-mes-depois-de-chuvas-em-mg" target="_blank" rel="noopener">Agência Brasil: Famílias lutam para reconstruir a vida</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/apos-enchentes-industrias-moveleiras-uba-tentam-recuperar/" target="_blank" rel="noopener">Diário do Comércio: Prejuízo de R$ 650 milhões</a></li>
+        <li><a href="https://www.otempo.com.br/cidades/2026/3/2/comercio-de-uba-registra-ate-r-204-mi-em-prejuizo-83-das-empresas-buscam-credito-emergencial" target="_blank" rel="noopener">O Tempo: Comércio de Ubá</a></li>
+        <li><a href="https://www.acessa.com/cidade/2026/03/313831-comercio-de-juiz-de-fora-acumula-prejuizos-apos-enchentes-e-ate-16-das-empresas-ja-avaliam-fechar-as-portas.html" target="_blank" rel="noopener">Acessa.com: Comércio de Juiz de Fora</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/apagao-industria-juiz-de-fora-uba-chuvas/" target="_blank" rel="noopener">Diário do Comércio: Apagão produtivo</a></li>
+        <li><a href="https://diariodocomercio.com.br/economia/comerciantes-zona-da-mata-recomeco/" target="_blank" rel="noopener">Diário do Comércio: Comerciantes recomeçam</a></li>
+        <li><a href="https://agenciagov.ebc.com.br/noticias/202604/governo-do-brasil-mobiliza-cerca-de-r-2-bilhoes-para-resposta-e-reconstrucao-em-juiz-de-fora-e-uba" target="_blank" rel="noopener">Agência Gov: R$ 2 bi para reconstrução</a></li>
+        <li><a href="https://www.gov.br/mdr/pt-br/noticias/prefeituras-de-uba-e-juiz-de-fora-ja-podem-cadastrar-familias-para-receber-auxilio-reconstrucao" target="_blank" rel="noopener">Gov.br/MDR: Auxílio Reconstrução</a></li>
+        <li><a href="https://tribunademinas.com.br/noticias/regiao/11-06-2026/uba-lanca-ferramenta-para-acompanhar-obras-de-reconstrucao-apos-as-chuvas.html" target="_blank" rel="noopener">Tribuna de Minas: Ferramenta de acompanhamento de obras</a></li>
+        <li><a href="https://theconversation.com/enchentes-em-mg-e-no-rs-perdas-humanas-e-economicas-mostram-urgencia-da-prevencao-278002" target="_blank" rel="noopener">The Conversation: Urgência da prevenção</a></li>
+        <li><a href="https://www.otempo.com.br/cidades/2026/2/24/apos-temporal-na-zona-da-mata-mineira-matias-barbosa-tambem-decreta-estado-de-calamidade-publica" target="_blank" rel="noopener">O Tempo: Matias Barbosa decreta calamidade</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/Category:Juiz_de_Fora" target="_blank" rel="noopener">Wikimedia Commons: Fotografias da região (Ricardo Stuckert/PR, Canal Gov)</a></li>
+        <li><a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet.js + CARTO / OpenStreetMap: mapa interativo</a></li>
       </ul>
     </div>
   </section>
 
   <footer class="wrap">
-    <p>Site produzido como material de apoio a um trabalho escolar sobre as enchentes de fevereiro de 2026 na Zona da Mata Mineira. Fotos e mapa: Wikimedia Commons (créditos individuais em cada legenda). Vídeos incorporados do YouTube, créditos de cada emissora. Substitua a seção de depoimentos pelos vídeos reais das entrevistas realizadas pelo grupo.</p>
+    <p>Site produzido como material de apoio a um trabalho escolar sobre as enchentes de fevereiro de 2026 na Zona da Mata Mineira. Fotos: Wikimedia Commons (créditos individuais em cada legenda). Mapa: Leaflet.js com tiles CARTO/OpenStreetMap. Vídeos de imprensa incorporados do YouTube, créditos de cada emissora. Vídeo de depoimentos gravado pelo grupo.</p>
   </footer>
 
 </main>
