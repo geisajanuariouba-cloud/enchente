@@ -757,6 +757,7 @@ img{ max-width: 100%; display: block; }
 /* ---------- floating pill nav ---------- */
 .topbar{ position: sticky; top: 16px; z-index: 30; display: flex; justify-content: center; padding: 0 16px; }
 .topbar-inner{
+  position: relative;
   max-width: 980px; width: 100%; display: flex; align-items: center; justify-content: space-between;
   gap: 16px; padding: 10px 10px 10px 20px; border-radius: 999px;
   background: rgba(12,18,24,0.62); border: 1px solid var(--glass-border);
@@ -773,7 +774,32 @@ img{ max-width: 100%; display: block; }
   white-space: nowrap; padding: 8px 13px; border-radius: 999px; transition: background 0.25s ease, color 0.25s ease;
 }
 .topnav a:hover{ color: var(--ink); background: rgba(255,255,255,0.08); }
-@media (max-width: 760px){ .topnav{ display: none; } }
+
+.nav-toggle{
+  display: none; flex-direction: column; justify-content: center; gap: 4px;
+  width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; cursor: pointer; flex-shrink: 0;
+}
+.nav-toggle span{ width: 16px; height: 2px; background: var(--ink); margin: 0 auto; border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 760px){
+  .topnav{
+    display: flex; flex-direction: column; align-items: stretch; gap: 2px;
+    position: absolute; top: calc(100% + 10px); left: 16px; right: 16px;
+    background: rgba(10,15,20,0.96); border: 1px solid var(--glass-border);
+    border-radius: 18px; padding: 10px; backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px); box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    overflow: visible;
+  }
+  .topnav.is-open{ opacity: 1; visibility: visible; transform: translateY(0); }
+  .topnav a{ padding: 12px 14px; text-align: left; }
+  .nav-toggle{ display: flex; }
+}
 
 /* ---------- hero ---------- */
 .hero{ position: relative; padding: 26px 20px 0; }
@@ -1017,7 +1043,7 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
 <div class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top"><strong>Quando a chuva vira desastre</strong></a>
-    <ul class="topnav">
+    <ul class="topnav" id="topnav">
       <li><a href="#oqueaconteceu">O que aconteceu</a></li>
       <li><a href="#numeros">Números</a></li>
       <li><a href="#economia">Economia</a></li>
@@ -1027,6 +1053,9 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
       <li><a href="#proposta">Proposta</a></li>
       <li><a href="#fontes">Fontes</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="topnav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </div>
 
@@ -1421,6 +1450,28 @@ footer p{ font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var topnav = document.getElementById('topnav');
+  if(navToggle && topnav){
+    function closeNav(){
+      topnav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navToggle.addEventListener('click', function(){
+      var open = topnav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    topnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeNav);
+    });
+    document.addEventListener('click', function(e){
+      if(!topnav.classList.contains('is-open')) return;
+      if(topnav.contains(e.target) || navToggle.contains(e.target)) return;
+      closeNav();
+    });
+  }
 
   var revealEls = document.querySelectorAll('[data-reveal], [data-reveal-group]');
   if(reduce || !('IntersectionObserver' in window)){
